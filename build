@@ -1,0 +1,10 @@
+#!/bin/bash
+source repo
+DIR=$(basename $REPO)
+
+if [ ! -e $DIR ] ; then 
+	git clone $REPO
+fi
+cd $DIR
+source setup.sh
+bitbake small-image
