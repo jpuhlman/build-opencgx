@@ -13,11 +13,17 @@ pipeline {
                                             [$class: 'SubmoduleOption', 
                                                 disableSubmodules: false, 
                                                 parentCredentials: false, 
-                                                recursiveSubmodules: false, 
+                                                recursiveSubmodules: false,
+                                                timeout: 180,
                                                 reference: '', 
-                                                trackingSubmodules: true], 
+                                                trackingSubmodules: true
+                                            ], 
                                             [$class: 'RelativeTargetDirectory', 
-                                                relativeTargetDir: 'repo']
+                                                relativeTargetDir: 'repo'
+                                            ],
+                                            [$class: 'CheckoutOption', 
+                                                timeout: 180
+                                            ]
                                         ], 
                             submoduleCfg: [], 
                             userRemoteConfigs: [[url: env.REPO]]
