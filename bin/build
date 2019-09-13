@@ -1,0 +1,21 @@
+#!/bin/bash
+TOPDIR=$(pwd)
+if [ -z "$REPO" ] ; then
+    echo Set repository value REPO to point to the opencgx build you would like to build from
+    exit 1
+fi
+if [ -z "$BUILD_TARGET" ] ; then
+    BUILD_TARGET="small-image"
+    echo WARNING: No build target specified with BUILD_TARGET, building $BUILD_TARGET
+fi
+
+DIR=$(basename $REPO)
+if [ ! -e $DIR ] ; then 
+	git clone $REPO
+fi
+cd $DIR
+git pull
+source setup.sh
+set -o pipefail
+bitbake $BUILD_TARGET | tee $TOPDIR/build.log
+
