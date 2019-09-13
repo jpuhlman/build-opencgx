@@ -3,8 +3,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                export REPO=$REPO
-                sh 'bash -x ./build' 
+                sh '''
+                    bash -x ./build
+                    export REPO=$REPO
+                ''' 
             }
         }
     }
