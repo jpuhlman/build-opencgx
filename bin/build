@@ -10,8 +10,7 @@ if [ -z "$BUILD_TARGET" ] ; then
 fi
 
 cd repo
-git pull
 source setup.sh
 set -o pipefail
-bitbake $BUILD_TARGET | tee $TOPDIR/build.log
+bitbake -k $BUILD_TARGET | tee $TOPDIR/build.log
 
