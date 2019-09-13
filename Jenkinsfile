@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    bash -x ./build
+                    bash -x ./bin/build
                     export REPO=$REPO
                 ''' 
             }
